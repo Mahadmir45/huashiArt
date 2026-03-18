@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hua Shi — Animation &amp; Visual Development</title>
+  <meta name="description" content="Portfolio of Hua Shi: 3D animation, visual development, character design, and worldbuilding." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700&family=DM+Serif+Display&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+
+  <div class="grain" aria-hidden="true"></div>
+
+  <header class="site-header" id="siteHeader">
+    <a id="adminOpenBtn" class="brand" href="javascript:void(0)">hua shi</a>
+    <button id="menuToggle" class="menu-toggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+    <nav id="siteNav" class="site-nav">
+      <a href="#about">About</a>
+      <a href="#animation">Animation</a>
+      <a href="#visual-dev">Visual Dev</a>
+      <a href="#sketchbook">Sketchbook</a>
+      <a href="#cv">CV</a>
+      <a id="linkedinLink" class="nav-cta" href="#" target="_blank" rel="noreferrer">LinkedIn &nearr;</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <section id="hero" class="hero">
+      <div class="hero-inner">
+        <p class="eyebrow reveal" data-key="heroEyebrow"></p>
+        <h1 class="reveal" data-key="heroTitle"></h1>
+        <p class="hero-desc reveal" data-key="heroDescription"></p>
+        <div class="hero-ctas reveal">
+          <a class="btn primary" href="#animation">View Work</a>
+          <a class="btn outline" href="#cv">Read CV</a>
+        </div>
+      </div>
+      <div class="hero-mosaic reveal">
+        <div class="mosaic-img">
+          <img src="https://images.unsplash.com/photo-1578926288207-32356f247a73?auto=format&fit=crop&w=800&q=80" alt="Animation still" loading="eager" />
+          <span class="mosaic-label">Animation</span>
+        </div>
+        <div class="mosaic-img">
+          <img src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=800&q=80" alt="Character sketches" loading="eager" />
+          <span class="mosaic-label">Visual Dev</span>
+        </div>
+        <div class="mosaic-img">
+          <img src="https://images.unsplash.com/photo-1502136969935-8d07106b90a8?auto=format&fit=crop&w=800&q=80" alt="Concept art" loading="eager" />
+          <span class="mosaic-label">Worldbuilding</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="section">
+      <div class="container about-grid">
+        <div class="about-label reveal">
+          <span class="section-number">01</span>
+          <h2>About</h2>
+        </div>
+        <div class="about-body">
+          <p class="about-lead reveal" data-key="aboutParagraph1"></p>
+          <p class="reveal" data-key="aboutParagraph2"></p>
+          <div class="about-details reveal">
+            <div class="detail-col">
+              <h4>Contact</h4>
+              <p id="contactEmail"></p>
+              <p id="contactPhone"></p>
+              <p id="contactLocation"></p>
+            </div>
+            <div class="detail-col">
+              <h4>Interests</h4>
+              <p>Character-driven stories</p>
+              <p>Visual development</p>
+              <p>Poetry &amp; life drawing</p>
+            </div>
+            <div class="detail-col">
+              <h4>Education</h4>
+              <p>Ringling College of Art &amp; Design</p>
+              <p>BFA Computer Animation</p>
+              <p>Expected May 2027</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="animation" class="section section-alt">
+      <div class="container">
+        <div class="section-label reveal">
+          <span class="section-number">02</span>
+          <h2>3D Animation</h2>
+          <p class="section-sub">Selected animation projects and movement studies.</p>
+        </div>
+        <div id="animationGrid" class="project-grid"></div>
+      </div>
+    </section>
+
+    <section id="visual-dev" class="section">
+      <div class="container">
+        <div class="section-label reveal">
+          <span class="section-number">03</span>
+          <h2>Visual Development</h2>
+          <p class="section-sub">Worldbuilding, character design, and concept art.</p>
+        </div>
+        <div id="visualDevGrid" class="project-grid"></div>
+        <div class="pdf-banner reveal">
+          <div>
+            <p class="pdf-title">Full Visual Development Portfolio</p>
+            <p class="pdf-sub">Character sheets, environment concepts, and narrative frames compiled in one document.</p>
+          </div>
+          <a id="visualDevPdfLink" class="btn primary" href="#" target="_blank" rel="noreferrer">Open PDF &nearr;</a>
+        </div>
+        <div class="pdf-viewer reveal">
+          <iframe src="https://drive.google.com/file/d/1BLY5dTNo9Eqz1kgcpFwxO7pl5sJmGaNw/preview" allow="autoplay"></iframe>
+        </div>
+      </div>
+    </section>
+
+    <section id="sketchbook" class="section section-alt">
+      <div class="container">
+        <div class="section-label reveal">
+          <span class="section-number">04</span>
+          <h2>Sketchbook</h2>
+          <p class="section-sub" data-key="sketchbookIntro"></p>
+        </div>
+        <div id="sketchbookGrid" class="sketch-grid"></div>
+      </div>
+    </section>
+
+    <section id="cv" class="section">
+      <div class="container">
+        <div class="section-label reveal">
+          <span class="section-number">05</span>
+          <h2>Curriculum Vitae</h2>
+          <p class="section-sub">Professional experience and skills — MIT format.</p>
+        </div>
+        <div class="cv-actions reveal">
+          <a id="cvPdfLink" class="btn primary" href="#" target="_blank" rel="noreferrer">Download CV &nearr;</a>
+          <a class="btn outline" href="./cv.tex" target="_blank" rel="noreferrer">LaTeX Source</a>
+        </div>
+        <article id="cvPreview" class="cv-card reveal"></article>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <p class="footer-name">Hua Shi</p>
+        <p class="footer-tagline">3D Animator &amp; Visual Storyteller</p>
+      </div>
+      <div class="footer-links">
+        <a href="#about">About</a>
+        <a href="#animation">Animation</a>
+        <a href="#visual-dev">Visual Dev</a>
+        <a href="#sketchbook">Sketchbook</a>
+        <a href="#cv">CV</a>
+      </div>
+      <div class="footer-contact">
+        <p id="footerEmail"></p>
+        <p id="footerPhone"></p>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <p>&copy; <span id="year"></span> Hua Shi. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <div id="lightbox" class="lightbox" aria-hidden="true">
+    <button class="lightbox-close" aria-label="Close">&times;</button>
+    <img id="lightboxImg" src="" alt="" />
+  </div>
+
+  <div id="adminBackdrop" class="admin-backdrop" aria-hidden="true"></div>
+  <aside id="adminPanel" class="admin-panel" aria-hidden="true">
+    <div class="admin-panel-inner">
+      <div class="admin-header">
+        <h3>Content Editor</h3>
+        <button id="adminCloseBtn" class="icon-btn" aria-label="Close panel">&times;</button>
+      </div>
+      <div id="loginView">
+        <p class="admin-desc">Sign in to edit website content without touching code.</p>
+        <label for="adminUsername">Username</label>
+        <input id="adminUsername" type="text" placeholder="Username" autocomplete="off" />
+        <label for="adminPassword">Password</label>
+        <input id="adminPassword" type="password" placeholder="Password" />
+        <button id="adminLoginBtn" class="btn primary full">Sign In</button>
+        <p id="loginError" class="msg-error"></p>
+      </div>
+      <div id="editorView" class="hidden">
+        <p class="admin-desc">Edit fields below. Changes persist in browser storage.</p>
+        <div id="editorFields" class="editor-fields"></div>
+        <p id="editorStatus" class="msg-success"></p>
+        <div class="editor-actions">
+          <button id="saveContentBtn" class="btn primary full">Save Changes</button>
+          <button id="resetContentBtn" class="btn outline full">Reset to Default</button>
+          <button id="logoutBtn" class="btn outline full">Sign Out</button>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <script src="./app.js"></script>
+</body>
+</html>
