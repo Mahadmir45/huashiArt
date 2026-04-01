@@ -8,8 +8,9 @@ const ADMIN_CREDENTIALS = {
 
 const DRIVE_IDS = {
   portfolio: "1BLY5dTNo9Eqz1kgcpFwxO7pl5sJmGaNw",
-  video1: "1jTzsCmNa-16zUy7PYeoH_w2p00X7HScy",
-  video2: "1pUeAcYZmaisC8diy86jRhfzIXli06z2E"
+  video1: "1UeSD0hED-E6L3eYRG8b6IUwGJYJFWxtY",
+  video2: "1gWcRUBGk51DIxHpvvDKuTN03-lPDlUW1",
+  video3: "15QN020WLvpRstIgsZ41NbaMeMa_bhiHG"
 };
 
 function drivePreview(id) { return `https://drive.google.com/file/d/${id}/preview`; }
@@ -34,9 +35,9 @@ const defaultContent = {
     "Life drawing, plein air studies, silhouette explorations, and observational work from my sketchbooks.",
   animationProjects: [
     {
-      title: "Short Scene Study",
+      title: "Animation Reel I",
       description:
-        "A 20-second scene demonstrating weight, force, and character emotion through pose-to-pose animation.",
+        "Character acting and movement study showcasing weight, force, and expressive pose-to-pose animation.",
       tags: ["Character Acting", "Maya", "Lighting"],
       link: driveView(DRIVE_IDS.video1),
       embedId: DRIVE_IDS.video1,
@@ -44,34 +45,24 @@ const defaultContent = {
       medium: "3D Animation"
     },
     {
-      title: "Final Animation Sequence",
+      title: "Animation Reel II",
       description:
-        "A polished sequence with cinematic framing, environment mood, and stylized character movement.",
+        "Cinematic sequence with stylized character movement, environment mood, and polished final render.",
       tags: ["Cinematography", "Blocking", "Final Render"],
       link: driveView(DRIVE_IDS.video2),
       embedId: DRIVE_IDS.video2,
       year: "2025",
-      medium: "Animation Reel"
+      medium: "3D Animation"
     },
     {
-      title: "3D Character — Fire Alarm Frog",
+      title: "Animation Reel III",
       description:
-        "Modeled, textured, and lit 3D character render. A small frog trapped inside a fire alarm box — expressive face and moody red lighting.",
-      tags: ["3D Modeling", "Texturing", "Lighting"],
-      link: driveView(DRIVE_IDS.portfolio),
-      thumbnail: "./assets/render_frog_3d.png",
+        "Short film sequence exploring narrative timing, dynamic camera work, and emotional character performance.",
+      tags: ["Storytelling", "Camera", "Performance"],
+      link: driveView(DRIVE_IDS.video3),
+      embedId: DRIVE_IDS.video3,
       year: "2025",
-      medium: "3D Render"
-    },
-    {
-      title: "3D Character — Temple Guardian",
-      description:
-        "Fully rendered 3D character with detailed costume, subsurface scattering skin, and dramatic environment lighting.",
-      tags: ["Maya", "ZBrush", "Character Render"],
-      link: driveView(DRIVE_IDS.portfolio),
-      thumbnail: "./assets/render_character_3d.png",
-      year: "2025",
-      medium: "3D Render"
+      medium: "3D Animation"
     }
   ],
   visualDevProjects: [
@@ -80,7 +71,6 @@ const defaultContent = {
       description:
         "Mythological archetype characters combining cultural motifs with personality-driven silhouettes. Full color concept art with unique costumes and props.",
       tags: ["Character Design", "Concept Art", "Cultural Motifs"],
-      link: driveView(DRIVE_IDS.portfolio),
       thumbnail: "./assets/archetype_characters.jpg",
       year: "2025",
       medium: "Character Design"
@@ -90,7 +80,6 @@ const defaultContent = {
       description:
         "Clean line-art explorations for a fish, crocodile, and female character — focusing on appeal, silhouette clarity, and expression.",
       tags: ["Line Art", "Character Design", "Appeal"],
-      link: driveView(DRIVE_IDS.portfolio),
       thumbnail: "./assets/design_lab.jpg",
       year: "2025",
       medium: "Design Lab"
@@ -100,7 +89,6 @@ const defaultContent = {
       description:
         "Grayscale value paintings exploring form, light direction, and mood across three distinct character designs.",
       tags: ["Value Painting", "Lighting", "Character"],
-      link: driveView(DRIVE_IDS.portfolio),
       thumbnail: "./assets/value_lab.jpg",
       year: "2025",
       medium: "Value Studies"
@@ -110,7 +98,6 @@ const defaultContent = {
       description:
         "Full-color pitch painting depicting a dramatic confrontation between a lone figure in a boat and a massive sea creature emerging from a cavern.",
       tags: ["Pitch Painting", "Environment", "Narrative"],
-      link: driveView(DRIVE_IDS.portfolio),
       thumbnail: "./assets/pitch_painting.jpg",
       year: "2025",
       medium: "Pitch Painting"
@@ -120,7 +107,6 @@ const defaultContent = {
       description:
         "Full character sheet with expression studies and a T-pose turnaround for a Day of the Dead-inspired girl with face paint and traditional costume.",
       tags: ["Expression Sheet", "Turnaround", "Character"],
-      link: driveView(DRIVE_IDS.portfolio),
       thumbnail: "./assets/lipsync_character.jpg",
       year: "2025",
       medium: "Character Sheet"
@@ -130,7 +116,6 @@ const defaultContent = {
       description:
         "Complete visual development package — creature designs, character turnarounds, environment paintings, prop sheets, and narrative composition frames.",
       tags: ["Worldbuilding", "Environment", "Creature Design"],
-      link: driveView(DRIVE_IDS.portfolio),
       thumbnail: "./assets/worldbuilding.jpg",
       year: "2025",
       medium: "Visual Development"
@@ -140,7 +125,6 @@ const defaultContent = {
       description:
         "Storyboard thumbnails, compositional sketches, value studies, and color keys showing the full development pipeline from rough to final.",
       tags: ["Process", "Thumbnails", "Color Keys"],
-      link: driveView(DRIVE_IDS.portfolio),
       thumbnail: "./assets/pitch_progress.jpg",
       year: "2025",
       medium: "Process Work"
@@ -150,7 +134,6 @@ const defaultContent = {
       description:
         "Front, three-quarter, and back views of the lip sync character on a lined turnaround sheet — ready for 3D modeling reference.",
       tags: ["Turnaround", "Model Sheet", "Production"],
-      link: driveView(DRIVE_IDS.portfolio),
       thumbnail: "./assets/lipsync_turnaround.jpg",
       year: "2025",
       medium: "Model Sheet"
@@ -292,9 +275,6 @@ function renderProjects(list, rootId) {
         : "";
       visual = `<div class="project-thumb">
         ${thumb}
-        <div class="project-overlay">
-          <a href="${project.link}" target="_blank" rel="noreferrer">Open &nearr;</a>
-        </div>
       </div>`;
     }
 
@@ -310,6 +290,12 @@ function renderProjects(list, rootId) {
         <div class="project-tags">${tags}</div>
       </div>
     `;
+
+    if (project.thumbnail && !project.embedId) {
+      card.style.cursor = "pointer";
+      card.addEventListener("click", () => openLightbox(project.thumbnail, project.title));
+    }
+
     root.appendChild(card);
   });
 }

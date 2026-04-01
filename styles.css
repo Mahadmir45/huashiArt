@@ -312,6 +312,8 @@ img { display: block; max-width: 100%; }
 
 .section-sub { color: var(--muted); max-width: 48ch; margin-bottom: 1.6rem; font-size: 0.95rem; }
 
+.visdev-cta { margin-bottom: 1.5rem; }
+
 /* ========== ABOUT ========== */
 .about-grid {
   display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; align-items: start;
@@ -328,6 +330,8 @@ img { display: block; max-width: 100%; }
   border-radius: var(--radius);
   box-shadow: var(--shadow-lg);
   transition: transform 0.5s ease;
+  object-fit: cover;
+  aspect-ratio: 3 / 4;
 }
 
 .about-visual:hover .about-hero-img {
