@@ -8,9 +8,11 @@ const ADMIN_CREDENTIALS = {
 
 const DRIVE_IDS = {
   portfolio: "1BLY5dTNo9Eqz1kgcpFwxO7pl5sJmGaNw",
-  video1: "1UeSD0hED-E6L3eYRG8b6IUwGJYJFWxtY",
-  video2: "1gWcRUBGk51DIxHpvvDKuTN03-lPDlUW1",
-  video3: "15QN020WLvpRstIgsZ41NbaMeMa_bhiHG"
+  videoOg1: "1jTzsCmNa-16zUy7PYeoH_w2p00X7HScy",
+  videoOg2: "1pUeAcYZmaisC8diy86jRhfzIXli06z2E",
+  video3: "1UeSD0hED-E6L3eYRG8b6IUwGJYJFWxtY",
+  video4: "1gWcRUBGk51DIxHpvvDKuTN03-lPDlUW1",
+  video5: "15QN020WLvpRstIgsZ41NbaMeMa_bhiHG"
 };
 
 function drivePreview(id) { return `https://drive.google.com/file/d/${id}/preview`; }
@@ -35,32 +37,52 @@ const defaultContent = {
     "Life drawing, plein air studies, silhouette explorations, and observational work from my sketchbooks.",
   animationProjects: [
     {
-      title: "Animation Reel I",
+      title: "Short Scene Study",
       description:
-        "Character acting and movement study showcasing weight, force, and expressive pose-to-pose animation.",
+        "A 20-second scene demonstrating weight, force, and character emotion through pose-to-pose animation.",
       tags: ["Character Acting", "Maya", "Lighting"],
-      link: driveView(DRIVE_IDS.video1),
-      embedId: DRIVE_IDS.video1,
+      link: driveView(DRIVE_IDS.videoOg1),
+      embedId: DRIVE_IDS.videoOg1,
       year: "2025",
       medium: "3D Animation"
     },
     {
-      title: "Animation Reel II",
+      title: "Final Animation Sequence",
       description:
-        "Cinematic sequence with stylized character movement, environment mood, and polished final render.",
+        "A polished sequence with cinematic framing, environment mood, and stylized character movement.",
       tags: ["Cinematography", "Blocking", "Final Render"],
-      link: driveView(DRIVE_IDS.video2),
-      embedId: DRIVE_IDS.video2,
+      link: driveView(DRIVE_IDS.videoOg2),
+      embedId: DRIVE_IDS.videoOg2,
       year: "2025",
-      medium: "3D Animation"
+      medium: "Animation Reel"
     },
     {
       title: "Animation Reel III",
       description:
-        "Short film sequence exploring narrative timing, dynamic camera work, and emotional character performance.",
-      tags: ["Storytelling", "Camera", "Performance"],
+        "Character acting and movement study showcasing weight, force, and expressive pose-to-pose animation.",
+      tags: ["Character Acting", "Maya", "Lighting"],
       link: driveView(DRIVE_IDS.video3),
       embedId: DRIVE_IDS.video3,
+      year: "2025",
+      medium: "3D Animation"
+    },
+    {
+      title: "Animation Reel IV",
+      description:
+        "Cinematic sequence with stylized character movement, environment mood, and polished final render.",
+      tags: ["Cinematography", "Blocking", "Final Render"],
+      link: driveView(DRIVE_IDS.video4),
+      embedId: DRIVE_IDS.video4,
+      year: "2025",
+      medium: "3D Animation"
+    },
+    {
+      title: "Animation Reel V",
+      description:
+        "Short film sequence exploring narrative timing, dynamic camera work, and emotional character performance.",
+      tags: ["Storytelling", "Camera", "Performance"],
+      link: driveView(DRIVE_IDS.video5),
+      embedId: DRIVE_IDS.video5,
       year: "2025",
       medium: "3D Animation"
     }
