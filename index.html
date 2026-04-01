@@ -31,9 +31,10 @@
 
   <main>
 
+    <!-- HERO — full-bleed Pitch Painting as background -->
     <section id="hero" class="hero">
       <div class="hero-bg" aria-hidden="true">
-        <img src="https://images.unsplash.com/photo-1578926288207-32356f247a73?auto=format&fit=crop&w=2000&q=80" alt="" />
+        <img src="./assets/pitch_painting.jpg" alt="" />
       </div>
       <div class="hero-overlay" aria-hidden="true"></div>
       <div class="hero-inner container">
@@ -45,7 +46,7 @@
           <a class="btn btn-light" href="#cv">Read CV</a>
         </div>
         <div class="hero-chips reveal">
-          <span>Ringling College</span>
+          <span>Ringling College of Art &amp; Design</span>
           <span>BFA Computer Animation '27</span>
           <span>Sarasota, FL</span>
         </div>
@@ -56,13 +57,17 @@
       </div>
     </section>
 
+    <!-- ABOUT with feature image -->
     <section id="about" class="section">
       <div class="container about-grid">
-        <div class="about-label reveal">
-          <span class="section-number">01</span>
-          <h2>About</h2>
+        <div class="about-visual reveal">
+          <img src="./assets/archetype_characters.jpg" alt="Hua Shi — Archetype character designs" class="about-hero-img" />
         </div>
         <div class="about-body">
+          <div class="about-label reveal">
+            <span class="section-number">01</span>
+            <h2>About</h2>
+          </div>
           <p class="about-lead reveal" data-key="aboutParagraph1"></p>
           <p class="reveal" data-key="aboutParagraph2"></p>
           <div class="about-details reveal">
@@ -89,9 +94,10 @@
       </div>
     </section>
 
+    <!-- 3D ANIMATION — dark section with 3D render bg -->
     <section id="animation" class="section section-dark">
       <div class="section-bg" aria-hidden="true">
-        <img src="https://images.unsplash.com/photo-1536240478700-b869070f9279?auto=format&fit=crop&w=2000&q=80" alt="" />
+        <img src="./assets/render_character_3d.png" alt="" />
       </div>
       <div class="section-bg-overlay" aria-hidden="true"></div>
       <div class="container">
@@ -104,7 +110,8 @@
       </div>
     </section>
 
-    <section id="visual-dev" class="section">
+    <!-- VISUAL DEV — light section, real portfolio art -->
+    <section id="visual-dev" class="section section-alt">
       <div class="container">
         <div class="section-label reveal">
           <span class="section-number">03</span>
@@ -112,6 +119,12 @@
           <p class="section-sub">Worldbuilding, character design, and concept art.</p>
         </div>
         <div id="visualDevGrid" class="project-grid"></div>
+
+        <!-- Featured showcase strip -->
+        <div class="showcase-strip reveal">
+          <img src="./assets/digital_paintings.jpg" alt="Digital Paintings" class="showcase-img" />
+        </div>
+
         <div class="pdf-banner reveal">
           <div>
             <p class="pdf-title">Full Visual Development Portfolio</p>
@@ -125,9 +138,10 @@
       </div>
     </section>
 
+    <!-- SKETCHBOOK — dark section with real sketches -->
     <section id="sketchbook" class="section section-dark">
       <div class="section-bg" aria-hidden="true">
-        <img src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=2000&q=80" alt="" />
+        <img src="./assets/personal_work.jpg" alt="" />
       </div>
       <div class="section-bg-overlay" aria-hidden="true"></div>
       <div class="container">
@@ -140,6 +154,7 @@
       </div>
     </section>
 
+    <!-- CV -->
     <section id="cv" class="section">
       <div class="container">
         <div class="section-label reveal">

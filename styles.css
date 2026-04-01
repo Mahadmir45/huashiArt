@@ -1,6 +1,6 @@
 :root {
   --bg: #ffffff;
-  --bg-alt: #f7f7f5;
+  --bg-alt: #f5f4f1;
   --surface: #ffffff;
   --text: #111113;
   --muted: #555560;
@@ -125,22 +125,22 @@ img { display: block; max-width: 100%; }
 
 .hero-bg img {
   width: 100%; height: 100%; object-fit: cover;
-  filter: brightness(0.35) saturate(0.7);
+  filter: brightness(0.32) saturate(0.8);
 }
 
 .hero-overlay {
   position: absolute; inset: 0; z-index: 1;
   background: linear-gradient(
     180deg,
-    rgba(17, 17, 19, 0.5) 0%,
-    rgba(17, 17, 19, 0.25) 40%,
-    rgba(17, 17, 19, 0.7) 100%
+    rgba(17, 17, 19, 0.55) 0%,
+    rgba(17, 17, 19, 0.2) 40%,
+    rgba(17, 17, 19, 0.75) 100%
   );
 }
 
 .hero-inner {
   position: relative; z-index: 2;
-  padding: 6rem 0 4rem;
+  padding: 7rem 0 4rem;
   max-width: 620px;
 }
 
@@ -237,7 +237,7 @@ img { display: block; max-width: 100%; }
 .reveal.visible { opacity: 1; transform: translateY(0); }
 
 /* ========== SECTIONS ========== */
-.section { padding: 3.5rem 0; position: relative; }
+.section { padding: 4rem 0; position: relative; }
 
 .section-alt { background: var(--bg-alt); }
 
@@ -252,7 +252,7 @@ img { display: block; max-width: 100%; }
 }
 .section-bg img {
   width: 100%; height: 100%; object-fit: cover;
-  filter: brightness(0.22) saturate(0.5);
+  filter: brightness(0.18) saturate(0.5);
 }
 
 .section-bg-overlay {
@@ -260,7 +260,7 @@ img { display: block; max-width: 100%; }
   background: linear-gradient(
     180deg,
     rgba(17, 17, 19, 0.6) 0%,
-    rgba(17, 17, 19, 0.35) 50%,
+    rgba(17, 17, 19, 0.3) 50%,
     rgba(17, 17, 19, 0.65) 100%
   );
 }
@@ -299,9 +299,6 @@ img { display: block; max-width: 100%; }
 }
 .section-dark .sketch-card p { color: rgba(255, 255, 255, 0.6); }
 
-.section-divider { padding: 0; }
-.section-divider hr { border: none; border-top: 1px solid var(--border-light); }
-
 .section-number {
   display: block; font-size: 0.68rem; font-weight: 700;
   letter-spacing: 0.14em; color: var(--accent); margin-bottom: 0.3rem;
@@ -317,13 +314,30 @@ img { display: block; max-width: 100%; }
 
 /* ========== ABOUT ========== */
 .about-grid {
-  display: grid; grid-template-columns: 160px 1fr; gap: 2rem;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; align-items: start;
+}
+
+.about-visual {
+  position: relative;
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.about-hero-img {
+  width: 100%;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-lg);
+  transition: transform 0.5s ease;
+}
+
+.about-visual:hover .about-hero-img {
+  transform: scale(1.02);
 }
 
 .about-label h2 {
   font-family: var(--serif);
   font-size: clamp(1.6rem, 3.5vw, 2.2rem);
-  color: var(--text);
+  color: var(--text); margin-bottom: 0.5rem;
 }
 
 .about-lead {
@@ -360,7 +374,7 @@ img { display: block; max-width: 100%; }
 .project-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
 
 .project-thumb {
-  position: relative; height: 200px; overflow: hidden;
+  position: relative; height: 220px; overflow: hidden;
   background: linear-gradient(135deg, #e6ddd4, #d4dae4);
 }
 .project-thumb img {
@@ -416,11 +430,31 @@ img { display: block; max-width: 100%; }
   padding: 0.14rem 0.48rem; background: var(--bg-alt);
 }
 
+/* ========== SHOWCASE STRIP ========== */
+.showcase-strip {
+  margin: 2rem 0 1.5rem;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  position: relative;
+}
+
+.showcase-img {
+  width: 100%;
+  display: block;
+  border-radius: var(--radius);
+  transition: transform 0.6s ease;
+}
+
+.showcase-strip:hover .showcase-img {
+  transform: scale(1.015);
+}
+
 /* ========== PDF BANNER ========== */
 .pdf-banner {
   display: flex; align-items: center; justify-content: space-between; gap: 1.2rem;
   margin-top: 1.4rem; padding: 1rem 1.2rem;
-  background: var(--bg-alt); border: 1px solid var(--border-light);
+  background: var(--bg); border: 1px solid var(--border-light);
   border-radius: var(--radius);
 }
 .pdf-title { font-weight: 600; margin-bottom: 0.1rem; font-size: 0.95rem; }
@@ -503,8 +537,9 @@ img { display: block; max-width: 100%; }
 
 /* ========== FOOTER ========== */
 .site-footer {
-  background: var(--bg-alt); border-top: 1px solid var(--border);
-  padding: 2.2rem 0 1.2rem; margin-top: 0;
+  background: var(--text); color: rgba(255, 255, 255, 0.7);
+  border-top: none;
+  padding: 3rem 0 1.5rem; margin-top: 0;
 }
 
 .footer-grid {
@@ -512,15 +547,15 @@ img { display: block; max-width: 100%; }
   gap: 1.5rem; margin-bottom: 1.5rem;
 }
 
-.footer-name { font-family: var(--serif); font-size: 1.15rem; margin-bottom: 0.2rem; }
-.footer-tagline { color: var(--muted); font-size: 0.86rem; }
+.footer-name { font-family: var(--serif); font-size: 1.15rem; margin-bottom: 0.2rem; color: #fff; }
+.footer-tagline { color: rgba(255, 255, 255, 0.5); font-size: 0.86rem; }
 .footer-links { display: flex; flex-direction: column; gap: 0.35rem; }
-.footer-links a { color: var(--muted); font-size: 0.86rem; transition: color 0.2s; }
-.footer-links a:hover { color: var(--text); }
-.footer-contact p { color: var(--muted); font-size: 0.86rem; margin-bottom: 0.15rem; }
+.footer-links a { color: rgba(255, 255, 255, 0.5); font-size: 0.86rem; transition: color 0.2s; }
+.footer-links a:hover { color: #fff; }
+.footer-contact p { color: rgba(255, 255, 255, 0.5); font-size: 0.86rem; margin-bottom: 0.15rem; }
 
-.footer-bottom { padding-top: 1rem; border-top: 1px solid var(--border-light); }
-.footer-bottom p { color: var(--faint); font-size: 0.78rem; }
+.footer-bottom { padding-top: 1rem; border-top: 1px solid rgba(255, 255, 255, 0.1); }
+.footer-bottom p { color: rgba(255, 255, 255, 0.3); font-size: 0.78rem; }
 
 /* ========== ADMIN ========== */
 .admin-backdrop {
@@ -575,7 +610,7 @@ textarea { min-height: 70px; resize: vertical; }
 /* ========== RESPONSIVE ========== */
 @media (max-width: 900px) {
   .hero { min-height: 85vh; }
-  .about-grid { grid-template-columns: 1fr; gap: 1rem; }
+  .about-grid { grid-template-columns: 1fr; gap: 1.5rem; }
   .about-details { grid-template-columns: 1fr 1fr; }
   .footer-grid { grid-template-columns: 1fr; gap: 1rem; }
   .sketch-grid { columns: 2; }

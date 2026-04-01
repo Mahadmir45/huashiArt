@@ -31,7 +31,7 @@ const defaultContent = {
   visualDevPdfUrl: driveView(DRIVE_IDS.portfolio),
   cvPdfUrl: driveView(DRIVE_IDS.portfolio),
   sketchbookIntro:
-    "A section showcasing my sketchbook — more images will be added once I've scanned them or taken better photos.",
+    "Life drawing, plein air studies, silhouette explorations, and observational work from my sketchbooks.",
   animationProjects: [
     {
       title: "Short Scene Study",
@@ -52,49 +52,119 @@ const defaultContent = {
       embedId: DRIVE_IDS.video2,
       year: "2025",
       medium: "Animation Reel"
+    },
+    {
+      title: "3D Character — Fire Alarm Frog",
+      description:
+        "Modeled, textured, and lit 3D character render. A small frog trapped inside a fire alarm box — expressive face and moody red lighting.",
+      tags: ["3D Modeling", "Texturing", "Lighting"],
+      link: driveView(DRIVE_IDS.portfolio),
+      thumbnail: "./assets/render_frog_3d.png",
+      year: "2025",
+      medium: "3D Render"
+    },
+    {
+      title: "3D Character — Temple Guardian",
+      description:
+        "Fully rendered 3D character with detailed costume, subsurface scattering skin, and dramatic environment lighting.",
+      tags: ["Maya", "ZBrush", "Character Render"],
+      link: driveView(DRIVE_IDS.portfolio),
+      thumbnail: "./assets/render_character_3d.png",
+      year: "2025",
+      medium: "3D Render"
     }
   ],
   visualDevProjects: [
     {
-      title: "Character Design Iterations",
+      title: "Archetype Character Design",
       description:
-        "Rapid concept rounds exploring personality, silhouette variety, and worldbuilding consistency across a character lineup.",
-      tags: ["Concept Art", "Character Design", "Iteration"],
+        "Mythological archetype characters combining cultural motifs with personality-driven silhouettes. Full color concept art with unique costumes and props.",
+      tags: ["Character Design", "Concept Art", "Cultural Motifs"],
       link: driveView(DRIVE_IDS.portfolio),
+      thumbnail: "./assets/archetype_characters.jpg",
       year: "2025",
-      medium: "Visual Development",
-      thumbnail:
-        "https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=1200&q=80"
+      medium: "Character Design"
     },
     {
-      title: "Originated Worldbuilding Project",
+      title: "Design Lab — Character Lineup",
       description:
-        "A complete visual development package — mood boards, key environments, props, and narrative design frames.",
-      tags: ["Worldbuilding", "Environment", "Story"],
+        "Clean line-art explorations for a fish, crocodile, and female character — focusing on appeal, silhouette clarity, and expression.",
+      tags: ["Line Art", "Character Design", "Appeal"],
       link: driveView(DRIVE_IDS.portfolio),
+      thumbnail: "./assets/design_lab.jpg",
       year: "2025",
-      medium: "Concept Package",
-      thumbnail:
-        "https://images.unsplash.com/photo-1502136969935-8d07106b90a8?auto=format&fit=crop&w=1200&q=80"
+      medium: "Design Lab"
+    },
+    {
+      title: "Value Lab — Character Studies",
+      description:
+        "Grayscale value paintings exploring form, light direction, and mood across three distinct character designs.",
+      tags: ["Value Painting", "Lighting", "Character"],
+      link: driveView(DRIVE_IDS.portfolio),
+      thumbnail: "./assets/value_lab.jpg",
+      year: "2025",
+      medium: "Value Studies"
+    },
+    {
+      title: "Pitch Painting — Sea Monster",
+      description:
+        "Full-color pitch painting depicting a dramatic confrontation between a lone figure in a boat and a massive sea creature emerging from a cavern.",
+      tags: ["Pitch Painting", "Environment", "Narrative"],
+      link: driveView(DRIVE_IDS.portfolio),
+      thumbnail: "./assets/pitch_painting.jpg",
+      year: "2025",
+      medium: "Pitch Painting"
+    },
+    {
+      title: "Lip Sync Character Design",
+      description:
+        "Full character sheet with expression studies and a T-pose turnaround for a Day of the Dead-inspired girl with face paint and traditional costume.",
+      tags: ["Expression Sheet", "Turnaround", "Character"],
+      link: driveView(DRIVE_IDS.portfolio),
+      thumbnail: "./assets/lipsync_character.jpg",
+      year: "2025",
+      medium: "Character Sheet"
+    },
+    {
+      title: "Worldbuilding Project",
+      description:
+        "Complete visual development package — creature designs, character turnarounds, environment paintings, prop sheets, and narrative composition frames.",
+      tags: ["Worldbuilding", "Environment", "Creature Design"],
+      link: driveView(DRIVE_IDS.portfolio),
+      thumbnail: "./assets/worldbuilding.jpg",
+      year: "2025",
+      medium: "Visual Development"
+    },
+    {
+      title: "Pitch Painting — Process",
+      description:
+        "Storyboard thumbnails, compositional sketches, value studies, and color keys showing the full development pipeline from rough to final.",
+      tags: ["Process", "Thumbnails", "Color Keys"],
+      link: driveView(DRIVE_IDS.portfolio),
+      thumbnail: "./assets/pitch_progress.jpg",
+      year: "2025",
+      medium: "Process Work"
+    },
+    {
+      title: "Character Turnaround Sheet",
+      description:
+        "Front, three-quarter, and back views of the lip sync character on a lined turnaround sheet — ready for 3D modeling reference.",
+      tags: ["Turnaround", "Model Sheet", "Production"],
+      link: driveView(DRIVE_IDS.portfolio),
+      thumbnail: "./assets/lipsync_turnaround.jpg",
+      year: "2025",
+      medium: "Model Sheet"
     }
   ],
   sketchbookImages: [
-    {
-      image: "https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=900&q=80",
-      caption: "Gesture and movement studies"
-    },
-    {
-      image: "https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=900&q=80",
-      caption: "Character mood notes"
-    },
-    {
-      image: "https://images.unsplash.com/photo-1452860606245-08befc0ff44b?auto=format&fit=crop&w=900&q=80",
-      caption: "Composition thumbnails"
-    },
-    {
-      image: "https://images.unsplash.com/photo-1579762593175-20226054cad0?auto=format&fit=crop&w=900&q=80",
-      caption: "Environment sketches"
-    }
+    { image: "./assets/sketch_cityscape.jpg", caption: "Pen & ink cityscape — plein air, 2025" },
+    { image: "./assets/sketch_red_trees.jpg", caption: "Colored pencil — red trees & cat, 2025" },
+    { image: "./assets/sketch_pastel_trees.jpg", caption: "Soft pastel landscape — night garden" },
+    { image: "./assets/silhouettes_1.jpg", caption: "Silhouette studies #57–86 — shape language" },
+    { image: "./assets/silhouettes_2.jpg", caption: "Silhouette studies #87–124 — continued" },
+    { image: "./assets/personal_work.jpg", caption: "Personal work — figure drawing, environments, character sketches" },
+    { image: "./assets/storytelling.jpg", caption: "Storytelling images — narrative storyboards" },
+    { image: "./assets/digital_paintings.jpg", caption: "Digital paintings — portraits, landscapes, fan art" }
   ],
   cv: {
     name: "Hua Shi",
