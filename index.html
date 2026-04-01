@@ -14,85 +14,81 @@
 
   <div class="grain" aria-hidden="true"></div>
 
-  <!-- ===== ADMIN TOOLBAR (shown in edit mode) ===== -->
+  <!-- ADMIN TOOLBAR -->
   <div id="adminToolbar" class="admin-toolbar hidden">
-    <div class="toolbar-left">
-      <span class="toolbar-dot"></span>
-      <span class="toolbar-label">Editing Mode</span>
-    </div>
+    <div class="toolbar-left"><span class="toolbar-dot"></span><span class="toolbar-label">Editing Mode</span></div>
     <div class="toolbar-actions">
-      <button id="toolbarSave" class="toolbar-btn tb-save">Save Changes</button>
+      <button id="toolbarSave" class="toolbar-btn tb-save">Save</button>
       <button id="toolbarDiscard" class="toolbar-btn tb-discard">Discard</button>
-      <button id="toolbarReset" class="toolbar-btn tb-discard">Reset to Default</button>
+      <button id="toolbarReset" class="toolbar-btn tb-discard">Reset All</button>
       <button id="toolbarExit" class="toolbar-btn tb-exit">Exit</button>
     </div>
   </div>
 
-  <!-- ===== LOGIN MODAL ===== -->
-  <div id="loginBackdrop" class="login-backdrop hidden"></div>
-  <div id="loginModal" class="login-modal hidden">
+  <!-- LOGIN MODAL -->
+  <div id="loginBackdrop" class="modal-backdrop hidden"></div>
+  <div id="loginModal" class="modal-box login-modal hidden">
+    <button id="loginCloseBtn" class="modal-close">&times;</button>
     <h3>Sign In to Edit</h3>
-    <p class="login-desc">Click any text, image, or card on the page to edit it directly.</p>
+    <p class="modal-desc">The entire page becomes your editor. Click text to rewrite it, drag cards to reorder, and manage sections freely.</p>
     <label for="adminUsername">Username</label>
     <input id="adminUsername" type="text" placeholder="Username" autocomplete="off" />
     <label for="adminPassword">Password</label>
     <input id="adminPassword" type="password" placeholder="Password" />
     <button id="adminLoginBtn" class="btn primary full">Sign In</button>
     <p id="loginError" class="msg-error"></p>
-    <button id="loginCloseBtn" class="login-close">&times;</button>
   </div>
 
-  <!-- ===== CARD EDITOR MODAL ===== -->
-  <div id="cardEditorBackdrop" class="login-backdrop hidden"></div>
-  <div id="cardEditorModal" class="card-editor-modal hidden">
-    <div class="ce-header">
-      <h3 id="ceTitle">Edit Card</h3>
-      <button id="ceClose" class="login-close">&times;</button>
-    </div>
+  <!-- CARD EDITOR MODAL -->
+  <div id="ceBackdrop" class="modal-backdrop hidden"></div>
+  <div id="ceModal" class="modal-box card-editor-modal hidden">
+    <div class="ce-header"><h3 id="ceTitle">Edit Card</h3><button id="ceClose" class="modal-close">&times;</button></div>
     <div class="ce-body">
-      <label>Title</label>
-      <input id="ceFieldTitle" type="text" />
-      <label>Description</label>
-      <textarea id="ceFieldDesc"></textarea>
-      <label>Tags (comma-separated)</label>
-      <input id="ceFieldTags" type="text" />
-      <label>Category / Medium</label>
-      <input id="ceFieldMedium" type="text" />
-      <label>Year</label>
-      <input id="ceFieldYear" type="text" />
-
-      <div id="ceImageGroup">
+      <div id="ceGroupTitle"><label>Title</label><input id="ceFieldTitle" type="text" /></div>
+      <div id="ceGroupDesc"><label>Description</label><textarea id="ceFieldDesc"></textarea></div>
+      <div id="ceGroupTags"><label>Tags (comma-separated)</label><input id="ceFieldTags" type="text" /></div>
+      <div id="ceGroupMedium"><label>Category / Medium</label><input id="ceFieldMedium" type="text" /></div>
+      <div id="ceGroupYear"><label>Year</label><input id="ceFieldYear" type="text" /></div>
+      <div id="ceGroupImage">
         <label>Image</label>
-        <div class="ce-img-preview" id="ceImgPreview"></div>
-        <label class="ce-upload-btn">
-          Upload New Image
-          <input type="file" id="ceFileInput" accept="image/*" />
-        </label>
-        <label>Or paste image URL</label>
-        <input id="ceFieldImageUrl" type="text" placeholder="https://..." />
+        <div class="ce-img-preview" id="ceImgPreview"><p>No image</p></div>
+        <label class="ce-upload-btn">Upload Image<input type="file" id="ceFileInput" accept="image/*" /></label>
+        <label>Or paste image URL</label><input id="ceFieldImageUrl" type="text" placeholder="https://..." />
       </div>
-
-      <div id="ceVideoGroup">
-        <label>Google Drive Video ID</label>
-        <input id="ceFieldEmbedId" type="text" placeholder="e.g. 1jTzsCmN..." />
-        <p class="ce-hint">Paste just the file ID from the Google Drive share link.</p>
-      </div>
-
-      <label>Caption (for sketchbook)</label>
-      <input id="ceFieldCaption" type="text" />
+      <div id="ceGroupVideo"><label>Google Drive Video ID</label><input id="ceFieldEmbedId" type="text" placeholder="e.g. 1jTzsCmN..." /><p class="ce-hint">Paste just the file ID from the share link.</p></div>
+      <div id="ceGroupCaption"><label>Caption</label><input id="ceFieldCaption" type="text" /></div>
     </div>
     <div class="ce-actions">
       <button id="ceSave" class="btn primary">Save</button>
       <button id="ceCancel" class="btn outline">Cancel</button>
-      <button id="ceDelete" class="btn tb-delete">Delete Card</button>
+      <button id="ceDelete" class="btn tb-delete">Delete</button>
     </div>
   </div>
 
+  <!-- ADD SECTION MODAL -->
+  <div id="addSecBackdrop" class="modal-backdrop hidden"></div>
+  <div id="addSecModal" class="modal-box add-sec-modal hidden">
+    <button id="addSecClose" class="modal-close">&times;</button>
+    <h3>Add New Section</h3>
+    <p class="modal-desc">Choose a section type to add.</p>
+    <div class="sec-type-grid">
+      <button class="sec-type-card" data-type="projectGrid"><span class="stc-icon">▦</span><span>Project Grid</span><small>Cards with images, videos, titles</small></button>
+      <button class="sec-type-card" data-type="sketchGrid"><span class="stc-icon">▥</span><span>Image Gallery</span><small>Masonry grid of images with captions</small></button>
+      <button class="sec-type-card" data-type="text"><span class="stc-icon">¶</span><span>Text Block</span><small>Heading + paragraph content</small></button>
+    </div>
+    <label>Section Title</label><input id="addSecTitle" type="text" placeholder="e.g. Concept Art" />
+    <label>Subtitle (optional)</label><input id="addSecSubtitle" type="text" placeholder="A brief description..." />
+    <div class="sec-theme-toggle">
+      <label>Theme</label>
+      <div class="theme-btns"><button class="theme-btn active" data-theme="light">Light</button><button class="theme-btn" data-theme="dark">Dark</button></div>
+    </div>
+    <button id="addSecConfirm" class="btn primary full">Add Section</button>
+  </div>
+
+  <!-- SITE HEADER -->
   <header class="site-header" id="siteHeader">
     <a id="adminOpenBtn" class="brand" href="javascript:void(0)">hua shi</a>
-    <button id="menuToggle" class="menu-toggle" aria-label="Toggle menu">
-      <span></span><span></span><span></span>
-    </button>
+    <button id="menuToggle" class="menu-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
     <nav id="siteNav" class="site-nav">
       <a href="#about">About</a>
       <a href="#animation">Animation</a>
@@ -104,156 +100,29 @@
   </header>
 
   <main>
-
+    <!-- Hero stays static, sections are rendered dynamically below -->
     <section id="hero" class="hero">
-      <div class="hero-bg" aria-hidden="true">
-        <img src="./assets/pitch_painting.jpg" alt="" />
-      </div>
+      <div class="hero-bg" aria-hidden="true"><img src="./assets/pitch_painting.jpg" alt="" /></div>
       <div class="hero-overlay" aria-hidden="true"></div>
       <div class="hero-inner container">
         <p class="eyebrow reveal" data-key="heroEyebrow"></p>
         <h1 class="reveal" data-key="heroTitle"></h1>
         <p class="hero-desc reveal" data-key="heroDescription"></p>
-        <div class="hero-ctas reveal">
-          <a class="btn primary" href="#animation">View Work</a>
-          <a class="btn btn-light" href="#cv">Read CV</a>
-        </div>
-        <div class="hero-chips reveal">
-          <span>Ringling College of Art &amp; Design</span>
-          <span>BFA Computer Animation '27</span>
-          <span>Sarasota, FL</span>
-        </div>
+        <div class="hero-ctas reveal"><a class="btn primary" href="#animation">View Work</a><a class="btn btn-light" href="#cv">Read CV</a></div>
+        <div class="hero-chips reveal"><span>Ringling College of Art &amp; Design</span><span>BFA Computer Animation '27</span><span>Sarasota, FL</span></div>
       </div>
-      <div class="hero-scroll" aria-hidden="true">
-        <span>Scroll</span>
-        <div class="scroll-line"></div>
-      </div>
+      <div class="hero-scroll" aria-hidden="true"><span>Scroll</span><div class="scroll-line"></div></div>
     </section>
-
-    <section id="about" class="section">
-      <div class="container about-grid">
-        <div class="about-visual reveal">
-          <img src="./assets/hua_portrait.png" alt="Hua Shi" class="about-hero-img" />
-        </div>
-        <div class="about-body">
-          <div class="about-label reveal">
-            <span class="section-number">01</span>
-            <h2>About</h2>
-          </div>
-          <p class="about-lead reveal" data-key="aboutParagraph1"></p>
-          <p class="reveal" data-key="aboutParagraph2"></p>
-          <div class="about-details reveal">
-            <div class="detail-col">
-              <h4>Contact</h4>
-              <p id="contactEmail" data-editable="contactEmail"></p>
-              <p id="contactPhone" data-editable="contactPhone"></p>
-              <p id="contactLocation" data-editable="contactLocation"></p>
-            </div>
-            <div class="detail-col">
-              <h4>Interests</h4>
-              <p>Character-driven stories</p>
-              <p>Visual development</p>
-              <p>Poetry &amp; life drawing</p>
-            </div>
-            <div class="detail-col">
-              <h4>Education</h4>
-              <p>Ringling College of Art &amp; Design</p>
-              <p>BFA Computer Animation</p>
-              <p>Expected May 2027</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="animation" class="section section-dark">
-      <div class="section-bg" aria-hidden="true">
-        <img src="./assets/render_character_3d.png" alt="" />
-      </div>
-      <div class="section-bg-overlay" aria-hidden="true"></div>
-      <div class="container">
-        <div class="section-label reveal">
-          <span class="section-number">02</span>
-          <h2>3D Animation</h2>
-          <p class="section-sub">Selected animation projects and movement studies.</p>
-        </div>
-        <div id="animationGrid" class="project-grid" data-grid="animationProjects"></div>
-      </div>
-    </section>
-
-    <section id="visual-dev" class="section section-alt">
-      <div class="container">
-        <div class="section-label reveal">
-          <span class="section-number">03</span>
-          <h2>Visual Development</h2>
-          <p class="section-sub">Worldbuilding, character design, and concept art. Click any piece to enlarge.</p>
-        </div>
-        <div class="visdev-cta reveal">
-          <a id="visualDevPdfLink" class="btn primary" href="#" target="_blank" rel="noreferrer">View Full Portfolio PDF &nearr;</a>
-        </div>
-        <div id="visualDevGrid" class="project-grid" data-grid="visualDevProjects"></div>
-        <div class="showcase-strip reveal">
-          <img src="./assets/digital_paintings.jpg" alt="Digital Paintings" class="showcase-img" />
-        </div>
-        <div class="pdf-viewer reveal">
-          <iframe src="https://drive.google.com/file/d/1BLY5dTNo9Eqz1kgcpFwxO7pl5sJmGaNw/preview" allow="autoplay"></iframe>
-        </div>
-      </div>
-    </section>
-
-    <section id="sketchbook" class="section section-dark">
-      <div class="section-bg" aria-hidden="true">
-        <img src="./assets/personal_work.jpg" alt="" />
-      </div>
-      <div class="section-bg-overlay" aria-hidden="true"></div>
-      <div class="container">
-        <div class="section-label reveal">
-          <span class="section-number">04</span>
-          <h2>Sketchbook</h2>
-          <p class="section-sub" data-key="sketchbookIntro"></p>
-        </div>
-        <div id="sketchbookGrid" class="sketch-grid" data-grid="sketchbookImages"></div>
-      </div>
-    </section>
-
-    <section id="cv" class="section">
-      <div class="container">
-        <div class="section-label reveal">
-          <span class="section-number">05</span>
-          <h2>Curriculum Vitae</h2>
-          <p class="section-sub">Professional experience and skills — MIT format.</p>
-        </div>
-        <div class="cv-actions reveal">
-          <a id="cvPdfLink" class="btn primary" href="#" target="_blank" rel="noreferrer">Download CV &nearr;</a>
-          <a class="btn outline" href="./cv.tex" target="_blank" rel="noreferrer">LaTeX Source</a>
-        </div>
-        <article id="cvPreview" class="cv-card reveal"></article>
-      </div>
-    </section>
-
+    <div id="sectionsContainer"></div>
   </main>
 
   <footer class="site-footer">
     <div class="container footer-grid">
-      <div class="footer-brand">
-        <p class="footer-name">Hua Shi</p>
-        <p class="footer-tagline">3D Animator &amp; Visual Storyteller</p>
-      </div>
-      <div class="footer-links">
-        <a href="#about">About</a>
-        <a href="#animation">Animation</a>
-        <a href="#visual-dev">Visual Dev</a>
-        <a href="#sketchbook">Sketchbook</a>
-        <a href="#cv">CV</a>
-      </div>
-      <div class="footer-contact">
-        <p id="footerEmail"></p>
-        <p id="footerPhone"></p>
-      </div>
+      <div class="footer-brand"><p class="footer-name">Hua Shi</p><p class="footer-tagline">3D Animator &amp; Visual Storyteller</p></div>
+      <div class="footer-links"><a href="#about">About</a><a href="#animation">Animation</a><a href="#visual-dev">Visual Dev</a><a href="#sketchbook">Sketchbook</a><a href="#cv">CV</a></div>
+      <div class="footer-contact"><p id="footerEmail"></p><p id="footerPhone"></p></div>
     </div>
-    <div class="container footer-bottom">
-      <p>&copy; <span id="year"></span> Hua Shi. All rights reserved.</p>
-    </div>
+    <div class="container footer-bottom"><p>&copy; <span id="year"></span> Hua Shi. All rights reserved.</p></div>
   </footer>
 
   <div id="lightbox" class="lightbox" aria-hidden="true">
