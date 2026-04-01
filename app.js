@@ -1,4 +1,4 @@
-const STORAGE_KEY = "huaPortfolioContentV1";
+const STORAGE_KEY = "huaPortfolioContentV2";
 const AUTH_KEY = "huaPortfolioAdminAuthed";
 
 const ADMIN_CREDENTIALS = {
