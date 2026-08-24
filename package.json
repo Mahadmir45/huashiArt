@@ -1,0 +1,18 @@
+{
+  "name": "hua-portfolio",
+  "version": "1.0.0",
+  "description": "A polished single-page portfolio website for animation and visual development, with a built-in admin login panel so content can be updated without editing code files.",
+  "main": "app.js",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test netlify/functions/lib/*.test.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@netlify/blobs": "^11.0.1",
+    "@netlify/identity": "^2.0.0"
+  }
+}

@@ -1,9 +1,6 @@
 /* ================================================================
    CONSTANTS & CREDENTIALS
    ================================================================ */
-const STORAGE_KEY = "huaPortfolioContentV3";
-const AUTH_KEY = "huaPortfolioAdminAuthed";
-const CREDS = { username: "huaadmin", password: "HuaPortfolio2026!" };
 const DRIVE_IDS = { portfolio:"1BLY5dTNo9Eqz1kgcpFwxO7pl5sJmGaNw", v1:"1jTzsCmNa-16zUy7PYeoH_w2p00X7HScy", v2:"1pUeAcYZmaisC8diy86jRhfzIXli06z2E", v3:"1UeSD0hED-E6L3eYRG8b6IUwGJYJFWxtY", v4:"1gWcRUBGk51DIxHpvvDKuTN03-lPDlUW1", v5:"15QN020WLvpRstIgsZ41NbaMeMa_bhiHG" };
 function dp(id){return`https://drive.google.com/file/d/${id}/preview`}
 function dv(id){return`https://drive.google.com/file/d/${id}/view`}
@@ -62,17 +59,35 @@ const defaultContent = {
 /* ================================================================
    STATE
    ================================================================ */
-let C = loadContent();
-let isAuthed = localStorage.getItem(AUTH_KEY)==="true";
+let C;
+let isAuthed = false;
 let editMode = false;
 let snapshot = null;
 
-function loadContent(){
-  const r=localStorage.getItem(STORAGE_KEY);
-  if(!r)return structuredClone(defaultContent);
-  try{return Object.assign(structuredClone(defaultContent),JSON.parse(r))}catch(_){return structuredClone(defaultContent)}
+async function loadContent(){
+  try{
+    const res = await fetch("/.netlify/functions/get-content");
+    if(res.ok){
+      const data = await res.json();
+      if(data && Object.keys(data).length) return Object.assign(structuredClone(defaultContent),data);
+    }
+  }catch(_err){}
+  return structuredClone(defaultContent);
 }
-function saveContent(){localStorage.setItem(STORAGE_KEY,JSON.stringify(C))}
+
+async function saveContent(){
+  const user = window.netlifyIdentity?.currentUser();
+  if(!user){ showToast("Not signed in — changes not saved."); return false; }
+  try{
+    const res = await fetch("/.netlify/functions/save-content", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "Authorization": `Bearer ${user.token.access_token}` },
+      body: JSON.stringify(C)
+    });
+    if(!res.ok){ showToast("Save failed — you may not be authorized."); return false; }
+    return true;
+  }catch(_err){ showToast("Save failed — network error."); return false; }
+}
 
 /* ================================================================
    SECTION RENDERERS — each returns a DOM element
@@ -450,11 +465,11 @@ document.getElementById("addSecConfirm").addEventListener("click",()=>{
    EDIT MODE
    ================================================================ */
 function enterEditMode(){editMode=true;snapshot=JSON.stringify(C);document.body.classList.add("edit-mode");document.getElementById("adminToolbar").classList.remove("hidden");reRenderSections();}
-function exitEditMode(save){if(save){captureAllEdits();saveContent();}else{C=JSON.parse(snapshot);}editMode=false;snapshot=null;document.body.classList.remove("edit-mode");document.getElementById("adminToolbar").classList.add("hidden");reRenderSections();}
+async function exitEditMode(save){if(save){captureAllEdits();await saveContent();}else{C=JSON.parse(snapshot);}editMode=false;snapshot=null;document.body.classList.remove("edit-mode");document.getElementById("adminToolbar").classList.add("hidden");reRenderSections();}
 
-document.getElementById("toolbarSave").addEventListener("click",()=>{captureAllEdits();saveContent();snapshot=JSON.stringify(C);reRenderSections();showToast("Saved!");});
+document.getElementById("toolbarSave").addEventListener("click",async ()=>{captureAllEdits();const ok=await saveContent();if(ok){snapshot=JSON.stringify(C);reRenderSections();showToast("Saved!");}});
 document.getElementById("toolbarDiscard").addEventListener("click",()=>{if(!confirm("Discard all unsaved changes?"))return;C=JSON.parse(snapshot);reRenderSections();showToast("Discarded.");});
-document.getElementById("toolbarReset").addEventListener("click",()=>{if(!confirm("Reset everything to factory defaults?"))return;C=structuredClone(defaultContent);snapshot=JSON.stringify(C);saveContent();reRenderSections();showToast("Reset.");});
+document.getElementById("toolbarReset").addEventListener("click",async ()=>{if(!confirm("Reset everything to factory defaults?"))return;C=structuredClone(defaultContent);const ok=await saveContent();if(ok){snapshot=JSON.stringify(C);reRenderSections();showToast("Reset.");}});
 document.getElementById("toolbarExit").addEventListener("click",()=>{exitEditMode(false);});
 
 function showToast(msg){let t=document.getElementById("editorToast");if(!t){t=document.createElement("div");t.id="editorToast";t.className="editor-toast";document.body.appendChild(t);}t.textContent=msg;t.classList.add("show");setTimeout(()=>t.classList.remove("show"),2200);}
@@ -463,13 +478,19 @@ function showToast(msg){let t=document.getElementById("editorToast");if(!t){t=do
    LOGIN
    ================================================================ */
 function initAdmin(){
-  const open=document.getElementById("adminOpenBtn"),lb=document.getElementById("adminLoginBtn"),cb=document.getElementById("loginCloseBtn"),bd=document.getElementById("loginBackdrop"),md=document.getElementById("loginModal"),err=document.getElementById("loginError");
-  function show(){if(isAuthed){enterEditMode();return;}md.classList.remove("hidden");bd.classList.remove("hidden");err.textContent="";}
-  function hide(){md.classList.add("hidden");bd.classList.add("hidden");}
-  function login(){const u=document.getElementById("adminUsername").value.trim(),p=document.getElementById("adminPassword").value;if(u===CREDS.username&&p===CREDS.password){isAuthed=true;localStorage.setItem(AUTH_KEY,"true");hide();enterEditMode();}else err.textContent="Invalid credentials.";}
-  open.addEventListener("click",e=>{e.preventDefault();show();}); lb.addEventListener("click",login); cb.addEventListener("click",hide); bd.addEventListener("click",hide);
-  document.getElementById("adminPassword").addEventListener("keydown",e=>{if(e.key==="Enter")login();});
-  document.addEventListener("keydown",e=>{if(e.key==="Escape"){hide();closeCardEditor();closeAddSecModal();}});
+  const open=document.getElementById("adminOpenBtn");
+  open.addEventListener("click",e=>{
+    e.preventDefault();
+    if(isAuthed){enterEditMode();return;}
+    window.netlifyIdentity?.open("login");
+  });
+
+  window.netlifyIdentity?.on("init",user=>{isAuthed=!!user;});
+  window.netlifyIdentity?.on("login",()=>{isAuthed=true;window.netlifyIdentity.close();enterEditMode();});
+  window.netlifyIdentity?.on("logout",()=>{isAuthed=false;if(editMode)exitEditMode(false);});
+  window.netlifyIdentity?.init();
+
+  document.addEventListener("keydown",e=>{if(e.key==="Escape"){closeCardEditor();closeAddSecModal();}});
 }
 
 /* ================================================================
@@ -487,5 +508,8 @@ function initMobileMenu(){const t=document.getElementById("menuToggle"),n=docume
 /* ================================================================
    BOOT
    ================================================================ */
-reRenderSections();
-initHeader(); initActiveNav(); initAdmin(); initMobileMenu();
+(async function boot(){
+  C = await loadContent();
+  reRenderSections();
+  initHeader(); initActiveNav(); initAdmin(); initMobileMenu();
+})();

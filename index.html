@@ -25,20 +25,6 @@
     </div>
   </div>
 
-  <!-- LOGIN MODAL -->
-  <div id="loginBackdrop" class="modal-backdrop hidden"></div>
-  <div id="loginModal" class="modal-box login-modal hidden">
-    <button id="loginCloseBtn" class="modal-close">&times;</button>
-    <h3>Sign In to Edit</h3>
-    <p class="modal-desc">The entire page becomes your editor. Click text to rewrite it, drag cards to reorder, and manage sections freely.</p>
-    <label for="adminUsername">Username</label>
-    <input id="adminUsername" type="text" placeholder="Username" autocomplete="off" />
-    <label for="adminPassword">Password</label>
-    <input id="adminPassword" type="password" placeholder="Password" />
-    <button id="adminLoginBtn" class="btn primary full">Sign In</button>
-    <p id="loginError" class="msg-error"></p>
-  </div>
-
   <!-- CARD EDITOR MODAL -->
   <div id="ceBackdrop" class="modal-backdrop hidden"></div>
   <div id="ceModal" class="modal-box card-editor-modal hidden">
@@ -130,6 +116,7 @@
     <img id="lightboxImg" src="" alt="" />
   </div>
 
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   <script src="./app.js"></script>
 </body>
 </html>
