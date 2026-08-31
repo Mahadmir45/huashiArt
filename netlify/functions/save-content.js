@@ -5,5 +5,8 @@ import { createSaveContentHandler } from "./lib/save-content-handler.js";
 export default createSaveContentHandler({
   getStore,
   getUser,
-  adminEmail: process.env.ADMIN_EMAIL,
+  adminEmails: (process.env.ADMIN_EMAILS || "")
+    .split(",")
+    .map((email) => email.trim())
+    .filter(Boolean),
 });
