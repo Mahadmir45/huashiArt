@@ -869,3 +869,176 @@ textarea { min-height: 70px; resize: vertical; }
 .contact-link:hover { text-decoration: underline; }
 .footer-contact a { color: inherit; text-decoration: none; }
 .footer-contact a:hover { text-decoration: underline; }
+
+/* ================================================================
+   APPLE / MAC UI POLISH LAYER
+   Motion tokens, vibrancy glass, flowing textures, micro-interactions
+   ================================================================ */
+:root {
+  --ease-out-apple: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out-apple: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-press: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --ease: 0.35s var(--ease-out-apple);
+  --glass-blur: blur(24px) saturate(180%);
+  --glass-bg: rgba(255, 255, 255, 0.68);
+  --glass-border: rgba(0, 0, 0, 0.08);
+  --glass-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.7);
+  --shadow-rest: 0 1px 2px rgba(0, 0, 0, 0.05), 0 4px 12px rgba(0, 0, 0, 0.05);
+  --shadow-lift: 0 2px 4px rgba(0, 0, 0, 0.06), 0 14px 32px rgba(0, 0, 0, 0.13);
+  --focus-ring: 0 0 0 4px rgba(196, 96, 58, 0.32);
+}
+
+html { scroll-padding-top: 64px; -moz-osx-font-smoothing: grayscale; text-rendering: optimizeLegibility; }
+body { -webkit-tap-highlight-color: transparent; font-feature-settings: "kern"; }
+h1, h2, h3 { text-wrap: balance; }
+p, li { text-wrap: pretty; }
+.hero h1 { letter-spacing: -0.015em; }
+.section-label h2, .about-label h2 { letter-spacing: -0.01em; }
+::selection { background: rgba(196, 96, 58, 0.22); }
+
+/* ---------- Header: macOS menu-bar vibrancy ---------- */
+.site-header { transition: background 0.5s var(--ease-out-apple), border-color 0.5s var(--ease-out-apple), color 0.3s; }
+.site-header.scrolled {
+  background: var(--glass-bg);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+  border-bottom-color: var(--glass-border);
+}
+.site-nav a::after { transition: width 0.35s var(--ease-out-apple); }
+.site-nav a:hover::after { width: 100%; }
+
+/* ---------- Hero: slow Ken Burns + drifting aurora light ---------- */
+.hero-bg img { animation: kenBurns 28s var(--ease-in-out-apple) infinite alternate; transform-origin: 60% 40%; }
+@keyframes kenBurns { from { transform: scale(1.02); } to { transform: scale(1.12) translate3d(-1.5%, -1%, 0); } }
+
+.hero-overlay::before, .hero-overlay::after,
+.showreel-section::before, .showreel-section::after {
+  content: ""; position: absolute; pointer-events: none;
+  width: 60vmax; height: 60vmax; border-radius: 50%;
+  filter: blur(60px); will-change: transform;
+  animation: auroraDrift 32s ease-in-out infinite alternate;
+}
+.hero-overlay::before { top: -25%; left: -15%; background: radial-gradient(circle, rgba(196, 96, 58, 0.35), transparent 65%); }
+.hero-overlay::after { bottom: -35%; right: -20%; background: radial-gradient(circle, rgba(110, 120, 220, 0.22), transparent 65%); animation-duration: 40s; animation-delay: -12s; }
+.hero-overlay { overflow: hidden; }
+@keyframes auroraDrift { to { transform: translate3d(10vw, 6vh, 0) scale(1.15) rotate(18deg); } }
+
+/* ---------- Reveal: Apple-style fade + rise with stagger ---------- */
+.reveal {
+  transform: translateY(32px);
+  transition: opacity 0.9s var(--ease-out-apple), transform 0.9s var(--ease-out-apple);
+  transition-delay: calc(var(--i, 0) * 90ms);
+}
+.reveal.visible { transform: none; }
+.reveal-media { transform: translateY(24px) scale(0.94); transition-duration: 1.2s; }
+.reveal-media.visible { transform: none; }
+
+/* ---------- Showreel: macOS window ---------- */
+.showreel-section { overflow: hidden; }
+.showreel-section > .container { position: relative; z-index: 1; }
+.showreel-section::before { top: -30%; left: -20%; background: radial-gradient(circle, rgba(196, 96, 58, 0.28), transparent 65%); }
+.showreel-section::after { bottom: -40%; right: -25%; background: radial-gradient(circle, rgba(120, 110, 230, 0.2), transparent 65%); animation-duration: 44s; animation-delay: -16s; }
+
+.mac-window {
+  border-radius: 14px; overflow: hidden;
+  background: #1c1c1f;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 0 0 0.5px rgba(0, 0, 0, 0.5), 0 10px 30px rgba(0, 0, 0, 0.4), 0 40px 90px rgba(0, 0, 0, 0.5);
+}
+.mac-titlebar {
+  position: relative; display: flex; align-items: center; justify-content: center;
+  height: 38px; padding: 0 12px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.04));
+  border-bottom: 1px solid rgba(0, 0, 0, 0.45);
+}
+.mac-dots { position: absolute; left: 14px; display: flex; gap: 8px; }
+.mac-dots i { width: 12px; height: 12px; border-radius: 50%; box-shadow: inset 0 0 0 0.5px rgba(0, 0, 0, 0.25); }
+.mac-dots i:nth-child(1) { background: #ff5f57; }
+.mac-dots i:nth-child(2) { background: #febc2e; }
+.mac-dots i:nth-child(3) { background: #28c840; }
+.mac-title { font-size: 0.78rem; font-weight: 500; color: rgba(255, 255, 255, 0.55); letter-spacing: 0.01em; }
+.mac-window .showreel-frame { border-radius: 0; box-shadow: none; }
+
+/* ---------- Buttons: hover brighten, press squish, focus ring ---------- */
+.btn, .btn-light, .nav-cta {
+  transition: transform 0.25s var(--ease-press), box-shadow 0.25s var(--ease-press),
+    background-color 0.25s, border-color 0.25s, filter 0.25s;
+}
+.btn:active, .btn-light:active, .nav-cta:active { transform: scale(0.97); transition-duration: 0.08s; }
+.btn.primary:hover { filter: brightness(1.04); }
+:focus-visible { outline: none; box-shadow: var(--focus-ring); border-radius: 10px; }
+.btn:focus-visible, .btn-light:focus-visible, .nav-cta:focus-visible { border-radius: 999px; }
+.hero-chips span {
+  -webkit-backdrop-filter: blur(12px) saturate(160%);
+  backdrop-filter: blur(12px) saturate(160%);
+}
+.btn-light { -webkit-backdrop-filter: blur(14px) saturate(170%); backdrop-filter: blur(14px) saturate(170%); }
+
+/* ---------- Cards: soft lift, slow gallery zoom ---------- */
+.project-card, .sketch-card, .cv-card { box-shadow: var(--shadow-rest); }
+.project-card, .sketch-card {
+  transition: transform 0.3s var(--ease-press), box-shadow 0.3s var(--ease-press), background 0.3s;
+}
+.project-thumb img, .sketch-card img, .about-hero-img, .showcase-img {
+  transition: transform 0.7s var(--ease-out-apple);
+}
+.project-overlay { transition: opacity 0.4s var(--ease-out-apple); }
+@media (hover: hover) {
+  .project-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lift); }
+  .sketch-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-lift); }
+  .project-card:hover .project-thumb img { transform: scale(1.05); }
+  .sketch-card:hover img { transform: scale(1.04); }
+}
+.section-dark .project-card, .section-dark .sketch-card {
+  -webkit-backdrop-filter: blur(14px) saturate(160%);
+  backdrop-filter: blur(14px) saturate(160%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 8px 24px rgba(0, 0, 0, 0.25);
+}
+
+/* ---------- Lightbox & modals: sheet-style entrance ---------- */
+.lightbox {
+  background: rgba(10, 10, 12, 0.72);
+  -webkit-backdrop-filter: blur(20px) saturate(140%);
+  backdrop-filter: blur(20px) saturate(140%);
+  transition: opacity 0.4s var(--ease-out-apple);
+}
+.lightbox img { border-radius: 12px; transform: scale(0.94); transition: transform 0.5s var(--ease-out-apple); }
+.lightbox.open img { transform: none; }
+.modal-box { animation: sheetIn 0.45s var(--ease-out-apple); }
+@keyframes sheetIn { from { opacity: 0; transform: translate(-50%, -46%) scale(0.97); } }
+
+/* ---------- Mobile menu: macOS popover glass ---------- */
+@media (max-width: 680px) {
+  .site-nav {
+    background: rgba(255, 255, 255, 0.82);
+    -webkit-backdrop-filter: var(--glass-blur);
+    backdrop-filter: var(--glass-blur);
+    box-shadow: var(--glass-highlight), 0 10px 30px rgba(0, 0, 0, 0.14);
+  }
+  .site-header .site-nav a { color: var(--muted); }
+  .hero-overlay::before, .hero-overlay::after,
+  .showreel-section::before, .showreel-section::after { filter: blur(40px); }
+}
+
+/* ---------- Accessibility ---------- */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .hero-bg img, .hero-overlay::before, .hero-overlay::after,
+  .showreel-section::before, .showreel-section::after, .scroll-line::after, .modal-box { animation: none; }
+  .reveal, .reveal-media { transform: none; transition: opacity 0.3s; transition-delay: 0s; }
+  .project-card:hover, .sketch-card:hover { transform: none; }
+}
+@media (prefers-reduced-transparency: reduce) {
+  .site-header.scrolled { background: rgba(255, 255, 255, 0.97); }
+}
+
+/* Cards fade in with the reveal timing, then switch to snappy hover timing */
+.project-card.reveal, .sketch-card.reveal {
+  transition: opacity 0.9s var(--ease-out-apple), transform 0.9s var(--ease-out-apple), box-shadow 0.3s var(--ease-press);
+  transition-delay: calc(var(--i, 0) * 90ms);
+}
+.reveal.settled { transition-delay: 0s; }
+.project-card.settled, .sketch-card.settled {
+  transition: transform 0.3s var(--ease-press), box-shadow 0.3s var(--ease-press), background 0.3s;
+}
