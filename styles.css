@@ -1055,3 +1055,28 @@ body.edit-mode .site-header { top: 44px; }
 @media (prefers-reduced-transparency: reduce) {
   .site-header.scrolled { background: #fff; -webkit-backdrop-filter: none; backdrop-filter: none; }
 }
+
+/* ---------- Tighter rhythm: fuller pages, less dead space ---------- */
+.section { padding: clamp(56px, 6.5vw, 104px) 0; }
+.showreel-section { padding-top: clamp(48px, 5vw, 80px); padding-bottom: clamp(40px, 4vw, 64px); }
+.showreel-section + .section { padding-top: clamp(40px, 4vw, 64px); }
+.section-label { margin-bottom: clamp(28px, 3vw, 44px); }
+.section-label h2, .about-label h2 { margin-bottom: 0.35rem; }
+.section-sub { max-width: 52ch; }
+.visdev-cta { margin: -0.75rem 0 2rem; }
+.hero { min-height: 92svh; }
+.hero-inner { padding: 6.5rem 0 4.5rem; }
+.hero-desc { margin-bottom: 1.75rem; }
+.showreel-container { width: min(1280px, calc(100% - 32px)); }
+.project-grid { gap: 20px; }
+.project-body { padding: 1rem 1.25rem 1.25rem; }
+.about-grid { gap: clamp(28px, 4.5vw, 64px); }
+.about-details { margin-top: 1.25rem; padding-top: 1.25rem; }
+.cv-actions { margin-bottom: 1.75rem; }
+.cv-section-title { margin-top: 1.5rem; }
+.site-footer { padding: 2.5rem 0 1.5rem; }
+@media (max-width: 680px) {
+  .section { padding: 48px 0; }
+  .hero { min-height: 86svh; }
+  .hero-inner { padding: 5.5rem 0 3.5rem; }
+}
