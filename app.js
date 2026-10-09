@@ -1,7 +1,8 @@
 /* ================================================================
    CONSTANTS & CREDENTIALS
    ================================================================ */
-const DRIVE_IDS = { portfolio:"1BLY5dTNo9Eqz1kgcpFwxO7pl5sJmGaNw", v1:"1jTzsCmNa-16zUy7PYeoH_w2p00X7HScy", v2:"1pUeAcYZmaisC8diy86jRhfzIXli06z2E", v3:"1UeSD0hED-E6L3eYRG8b6IUwGJYJFWxtY", v4:"1gWcRUBGk51DIxHpvvDKuTN03-lPDlUW1", v5:"15QN020WLvpRstIgsZ41NbaMeMa_bhiHG" };
+const CONTENT_VERSION = 2;
+const DRIVE_IDS = { showreel:"14SnLHaeOO3eQqNEVK3KOj6QMDMW23d3H", portfolio:"1BLY5dTNo9Eqz1kgcpFwxO7pl5sJmGaNw", v1:"1jTzsCmNa-16zUy7PYeoH_w2p00X7HScy", v2:"1pUeAcYZmaisC8diy86jRhfzIXli06z2E", v3:"1UeSD0hED-E6L3eYRG8b6IUwGJYJFWxtY", v4:"1gWcRUBGk51DIxHpvvDKuTN03-lPDlUW1", v5:"15QN020WLvpRstIgsZ41NbaMeMa_bhiHG" };
 function dp(id){return`https://drive.google.com/file/d/${id}/preview`}
 function dv(id){return`https://drive.google.com/file/d/${id}/view`}
 
@@ -14,16 +15,18 @@ const defaultContent = {
   heroDescription:"I create visual stories and 3D assets using a mix of tools, with a focus on making characters and worlds feel fun, expressive, and alive. Currently studying Computer Animation at Ringling College of Art & Design.",
   aboutParagraph1:"I'm currently studying Computer Animation at Ringling College of Art and Design, where I focus on 3D animation, visual development, and lighting. I like combining traditional and digital techniques in my work, which lets me explore storytelling in different ways.",
   aboutParagraph2:"I'm especially interested in character-driven stories, visual development, and 3D animation. Outside of animation, I also enjoy poetry, music, and life drawing — all of which influence how I think about storytelling and visuals.",
-  contactEmail:"hshi@c.ringling.edu", contactPhone:"+1 (941) 225-1558", contactLocation:"Sarasota, FL",
-  linkedinUrl:"https://www.linkedin.com/in/hua-shi-b1738a389/",
-  visualDevPdfUrl:dv(DRIVE_IDS.portfolio), cvPdfUrl:dv(DRIVE_IDS.portfolio),
+  contentVersion:CONTENT_VERSION,
+  contactEmail:"hshi@c.ringling.edu", contactEmailAlt:"hshi2634@gmail.com", contactLocation:"Sarasota, FL",
+  linkedinUrl:"https://www.linkedin.com/in/huashianimation",
+  visualDevPdfUrl:dv(DRIVE_IDS.portfolio), cvPdfUrl:"./assets/Hua_Shi_Resume.pdf",
 
   sections:[
-    {id:"about",type:"about"},
+    {id:"showreel",type:"showreel",embedId:DRIVE_IDS.showreel,title:"Showreel",number:"01",subtitle:"A look at my latest 3D animation work.",dark:true},
     {id:"animation",type:"projectGrid",dataKey:"animationProjects",title:"3D Animation",number:"02",subtitle:"Selected animation projects and movement studies.",dark:true,bgImage:"./assets/render_character_3d.png",layout:"2col"},
     {id:"visual-dev",type:"projectGrid",dataKey:"visualDevProjects",title:"Visual Development",number:"03",subtitle:"Worldbuilding, character design, and concept art. Click any piece to enlarge.",dark:false,alt:true,layout:"2col",showPortfolioBtn:true,showcaseImage:"./assets/digital_paintings.jpg",pdfSrc:"https://drive.google.com/file/d/1BLY5dTNo9Eqz1kgcpFwxO7pl5sJmGaNw/preview"},
     {id:"sketchbook",type:"sketchGrid",dataKey:"sketchbookImages",title:"Sketchbook",number:"04",subtitle:"Life drawing, plein air studies, silhouette explorations, and observational work.",dark:true,bgImage:"./assets/personal_work.jpg",layout:"3col"},
-    {id:"cv",type:"cv"}
+    {id:"about",type:"about",number:"05"},
+    {id:"cv",type:"cv",number:"06"}
   ],
 
   animationProjects:[
@@ -53,7 +56,7 @@ const defaultContent = {
     {image:"./assets/storytelling.jpg",caption:"Storytelling images — narrative storyboards"},
     {image:"./assets/digital_paintings.jpg",caption:"Digital paintings — portraits, landscapes, fan art"}
   ],
-  cv:{name:"Hua Shi",role:"3D Animator & Visual Development Artist",location:"Sarasota, FL",email:"hshi@c.ringling.edu",phone:"+1 (941) 225-1558",linkedin:"linkedin.com/in/hua-shi-b1738a389",education:[{school:"Ringling College of Art and Design",detail:"BFA in Computer Animation, Expected May 2027"}],experience:[{title:"Computer Animator",org:"Ringling College of Art and Design",date:"Aug 2023 — Present",bullets:["Produced short animation scenes demonstrating believable weight, force, and character emotion.","Designed characters and environments, planned shots with thumbnails, and developed lighting schemes.","Modeled, textured, lit, and animated assets end-to-end using a production workflow."]},{title:"Character Designer",org:"Ringling College of Art and Design",date:"Sep 2023 — Present",bullets:["Developed character design variations for narrative and worldbuilding requirements.","Pitched concepts with supporting visual references and iterated from critique."]},{title:"Concept Artist",org:"Ringling College of Art and Design",date:"Sep 2024 — May 2025",bullets:["Built an original worldbuilding project from concept ideation to presentation boards."]},{title:"Freelance Artist",org:"Multiple Clients (Remote)",date:"2017 — Present",bullets:["Delivered commissioned character illustrations and design packages for independent clients.","Created custom fashion and costume concepts for pre-existing character IPs."]}],additional:["Personal Tour Guide, China (Nov — Dec 2025)","Member, Photography Club & Table Tennis Club, Ringling College"],skills:{software:"Autodesk Maya, Adobe Premiere Pro, Adobe Photoshop, Nuke, 3D Coat, ZBrush",languages:"Mandarin (Native), English (Professional Proficiency)"}}
+  cv:{name:"Hua Shi",role:"3D Animator & Visual Development Artist",location:"Sarasota, FL",email:"hshi@c.ringling.edu",linkedin:"linkedin.com/in/huashianimation",education:[{school:"Ringling College of Art and Design, Sarasota, FL",detail:"Bachelor of Fine Arts in Computer Animation, May 2027"}],experienceGroups:[{heading:"Campus & Freelance Experience",entries:[{title:"Character Designer",org:"Ringling College of Art and Design",date:"Sept 2023 — Present",bullets:["Developed character design variations for worldbuilding and story development.","Pitched concepts to class with supporting visuals under time-sensitive deadlines."]},{title:"Computer Animator",org:"Ringling College of Art and Design",date:"Aug 2023 — Present",bullets:["Produced 20-second animated scenes demonstrating weight, force, and character emotion.","Designed characters and environments, planned shots with thumbnails, and developed lighting schemes.","Modeled and textured characters, environments, and props; lit scenes and animated pose-to-pose."]},{title:"Freelance Artist",org:"Multiple Clients, Nationwide",date:"2017 — Present",bullets:["Delivered commissioned character designs, sketches, and illustrations for writing and personal projects.","Produced a series of fashion designs for existing characters under client request."]}]},{heading:"Industry & Research Experience",entries:[{title:"Animation / AI Research Volunteer",org:"Bournemouth University, Remote",date:"Sept 2026",bullets:["Tested an AI-driven lip-sync animation tool in Maya and evaluated the quality and accuracy of generated results.","Contributed animator-focused insights to support development and refinement of AI-assisted animation workflows.","Communicated with the Bournemouth University research team on testing results, workflows, and tool development."]},{title:"Animator Intern",org:"4399 Game, Guangzhou, China",date:"June 2026 — Sept 2026",bullets:["Animated character–environment interactions, including tree-chopping, jumping, and walk/run cycles, for in-game use.","Created prop and creature animations, including hit reactions for plants and animals, to support gameplay feedback.","Rigged characters and props for gameplay implementation, ensuring rigs supported the range of motion needed for interaction animations.","Partnered across disciplines to resolve technical setup challenges and finalize engine-ready files."]}]}],skills:{software:"Autodesk Maya, Adobe Premiere Pro, Adobe Photoshop, Nuke, 3D Coat, ZBrush",languages:"Mandarin (Native), English (Professional Proficiency)"}}
 };
 
 /* ================================================================
@@ -69,10 +72,25 @@ async function loadContent(){
     const res = await fetch("/.netlify/functions/get-content");
     if(res.ok){
       const data = await res.json();
-      if(data && Object.keys(data).length) return Object.assign(structuredClone(defaultContent),data);
+      if(data && Object.keys(data).length) return migrateContent(Object.assign(structuredClone(defaultContent),data),data.contentVersion);
     }
   }catch(_err){}
   return structuredClone(defaultContent);
+}
+
+/* Saved content from before v2 has the old section order and old CV; bring it
+   up to date while keeping any other edits made through the admin panel. */
+function migrateContent(c,savedVersion){
+  if((savedVersion||1)>=CONTENT_VERSION) return c;
+  const d=defaultContent;
+  ["cv","cvPdfUrl","linkedinUrl","contactEmail","contactEmailAlt"].forEach(k=>c[k]=structuredClone(d[k]));
+  delete c.contactPhone;
+  const secs=(c.sections||[]).filter(x=>x.type!=="showreel"&&x.type!=="about"&&x.type!=="cv");
+  const num={animation:"02","visual-dev":"03",sketchbook:"04"};
+  secs.forEach(x=>{if(num[x.id])x.number=num[x.id];});
+  c.sections=[structuredClone(d.sections[0]),...secs,...structuredClone(d.sections.slice(-2))];
+  c.contentVersion=CONTENT_VERSION;
+  return c;
 }
 
 async function saveContent(){
@@ -92,16 +110,25 @@ async function saveContent(){
 /* ================================================================
    SECTION RENDERERS — each returns a DOM element
    ================================================================ */
-function buildAbout(){
-  const s=document.createElement("section"); s.id="about"; s.className="section";
+function buildShowreel(cfg){
+  const s=document.createElement("section"); s.id=cfg.id; s.className="section showreel-section"+(cfg.dark?" section-dark":"");
+  s.innerHTML=`<div class="container showreel-container">
+    <div class="section-label reveal"><span class="section-number">${cfg.number||""}</span><h2>${cfg.title||""}</h2><p class="section-sub">${cfg.subtitle||""}</p></div>
+    <div class="showreel-frame reveal"><iframe src="${dp(cfg.embedId)}" title="Hua Shi showreel" allow="autoplay; encrypted-media; fullscreen" allowfullscreen></iframe></div>
+  </div>`;
+  return s;
+}
+
+function buildAbout(cfg){
+  const s=document.createElement("section"); s.id="about"; s.className="section section-alt";
   s.innerHTML=`<div class="container about-grid">
     <div class="about-visual reveal"><img src="./assets/hua_portrait.png" alt="Hua Shi" class="about-hero-img" /></div>
     <div class="about-body">
-      <div class="about-label reveal"><span class="section-number">01</span><h2>About</h2></div>
+      <div class="about-label reveal"><span class="section-number">${cfg.number||""}</span><h2>About</h2></div>
       <p class="about-lead reveal" data-key="aboutParagraph1"></p>
       <p class="reveal" data-key="aboutParagraph2"></p>
       <div class="about-details reveal">
-        <div class="detail-col"><h4>Contact</h4><p data-editable="contactEmail"></p><p data-editable="contactPhone"></p><p data-editable="contactLocation"></p></div>
+        <div class="detail-col"><h4>Contact</h4><p><a id="aboutEmail" class="contact-link" href="mailto:${C.contactEmail}">${C.contactEmail}</a></p><p><a id="aboutEmailAlt" class="contact-link" href="mailto:${C.contactEmailAlt}">${C.contactEmailAlt}</a></p><p data-editable="contactLocation"></p></div>
         <div class="detail-col"><h4>Interests</h4><p>Character-driven stories</p><p>Visual development</p><p>Poetry &amp; life drawing</p></div>
         <div class="detail-col"><h4>Education</h4><p>Ringling College of Art &amp; Design</p><p>BFA Computer Animation</p><p>Expected May 2027</p></div>
       </div>
@@ -186,15 +213,16 @@ function buildSketchGrid(cfg, secIdx){
   return s;
 }
 
-function buildCv(){
+function buildCv(cfg){
   const cv=C.cv; const s=document.createElement("section"); s.id="cv"; s.className="section";
   const edu=cv.education.map(e=>`<li><strong>${e.school}</strong> — ${e.detail}</li>`).join("");
-  const exp=cv.experience.map(e=>{const b=e.bullets.map(x=>`<li>${x}</li>`).join("");return`<div class="cv-entry"><h4>${e.title}, ${e.org} <span>${e.date}</span></h4><ul>${b}</ul></div>`;}).join("");
-  const add=cv.additional.map(a=>`<li>${a}</li>`).join("");
+  const entry=e=>{const b=e.bullets.map(x=>`<li>${x}</li>`).join("");return`<div class="cv-entry"><h4>${e.title}, ${e.org} <span>${e.date}</span></h4><ul>${b}</ul></div>`;};
+  const groups=cv.experienceGroups||[{heading:"Experience",entries:cv.experience||[]}];
+  const exp=groups.map(g=>`<p class="cv-section-title">${g.heading}</p>${g.entries.map(entry).join("")}`).join("");
   s.innerHTML=`<div class="container">
-    <div class="section-label reveal"><span class="section-number">05</span><h2>Curriculum Vitae</h2><p class="section-sub">Professional experience and skills — MIT format.</p></div>
+    <div class="section-label reveal"><span class="section-number">${cfg.number||""}</span><h2>Curriculum Vitae</h2><p class="section-sub">Education, experience, and skills.</p></div>
     <div class="cv-actions reveal"><a id="cvPdfLink" class="btn primary" href="${C.cvPdfUrl}" target="_blank" rel="noreferrer">Download CV &nearr;</a><a class="btn outline" href="./cv.tex" target="_blank" rel="noreferrer">LaTeX Source</a></div>
-    <article class="cv-card reveal"><div class="cv-header"><h3>${cv.name}</h3><p>${cv.role} &middot; ${cv.location} &middot; <a href="mailto:${cv.email}">${cv.email}</a> &middot; ${cv.phone} &middot; <a href="https://${cv.linkedin}" target="_blank" rel="noreferrer">${cv.linkedin}</a></p></div><p class="cv-section-title">Education</p><ul>${edu}</ul><p class="cv-section-title">Experience</p>${exp}<p class="cv-section-title">Additional Experience &amp; Activities</p><ul>${add}</ul><p class="cv-section-title">Skills</p><p><strong>Software:</strong> ${cv.skills.software}</p><p><strong>Languages:</strong> ${cv.skills.languages}</p></article>
+    <article class="cv-card reveal"><div class="cv-header"><h3>${cv.name}</h3><p>${cv.role} &middot; ${cv.location} &middot; <a href="mailto:${cv.email}">${cv.email}</a> &middot; <a href="https://${cv.linkedin}" target="_blank" rel="noreferrer">${cv.linkedin}</a></p></div><p class="cv-section-title">Education</p><ul>${edu}</ul>${exp}<p class="cv-section-title">Skills</p><p><strong>Software:</strong> ${cv.skills.software}</p><p><strong>Languages:</strong> ${cv.skills.languages}</p></article>
   </div>`;
   return s;
 }
@@ -246,10 +274,11 @@ function reRenderSections(){
     if(editMode) addSectionDivider(container,i);
     let el;
     switch(cfg.type){
-      case "about": el=buildAbout(); break;
+      case "showreel": el=buildShowreel(cfg); break;
+      case "about": el=buildAbout(cfg); break;
       case "projectGrid": el=buildProjectGrid(cfg,i); break;
       case "sketchGrid": el=buildSketchGrid(cfg,i); break;
-      case "cv": el=buildCv(); break;
+      case "cv": el=buildCv(cfg); break;
       case "text": el=buildText(cfg); break;
       default: return;
     }
@@ -273,8 +302,9 @@ function setTextByKey(){
 }
 function renderTopInfo(){
   const s=(id,v)=>{const e=document.getElementById(id);if(e)e.textContent=v};
-  s("contactEmail",C.contactEmail);s("contactPhone",C.contactPhone);s("contactLocation",C.contactLocation);
-  s("footerEmail",C.contactEmail);s("footerPhone",C.contactPhone);s("year",new Date().getFullYear());
+  s("contactLocation",C.contactLocation);
+  const fe=document.getElementById("footerEmail");if(fe)fe.innerHTML=[C.contactEmail,C.contactEmailAlt].filter(Boolean).map(e=>`<a href="mailto:${e}">${e}</a>`).join("<br>");
+  s("year",new Date().getFullYear());
   const li=document.getElementById("linkedinLink");if(li)li.href=C.linkedinUrl;
   const vd=document.getElementById("visualDevPdfLink");if(vd)vd.href=C.visualDevPdfUrl;
   const cv=document.getElementById("cvPdfLink");if(cv)cv.href=C.cvPdfUrl;
