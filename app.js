@@ -141,8 +141,6 @@ function buildProjectGrid(cfg, secIdx){
   const s=document.createElement("section");
   s.id=cfg.id; s.className="section"+(cfg.dark?" section-dark":"")+(cfg.alt?" section-alt":"");
   let bg="";
-  if(cfg.dark&&cfg.bgImage) bg=`<div class="section-bg" aria-hidden="true"><img src="${cfg.bgImage}" alt="" /></div><div class="section-bg-overlay" aria-hidden="true"></div>`;
-
   let extras="";
   if(cfg.showPortfolioBtn) extras+=`<div class="visdev-cta reveal"><a id="visualDevPdfLink" class="btn primary" href="${C.visualDevPdfUrl}" target="_blank" rel="noreferrer">View Full Portfolio PDF &nearr;</a></div>`;
 
@@ -151,7 +149,7 @@ function buildProjectGrid(cfg, secIdx){
     ${extras}
     <div id="${cfg.id}Grid" class="project-grid" data-grid="${cfg.dataKey}" data-layout="${cfg.layout||'2col'}"></div>
     ${cfg.showcaseImage?`<div class="showcase-strip reveal"><img src="${cfg.showcaseImage}" alt="Showcase" class="showcase-img" /></div>`:""}
-    ${cfg.pdfSrc?`<div class="pdf-viewer reveal"><iframe src="${cfg.pdfSrc}" allow="autoplay"></iframe></div>`:""}
+    ${cfg.pdfSrc?`<div class="pdf-viewer reveal"><iframe src="${cfg.pdfSrc}" loading="lazy" title="Visual development portfolio" allow="autoplay"></iframe></div>`:""}
   </div>`;
 
   const grid=s.querySelector(".project-grid");
@@ -160,7 +158,7 @@ function buildProjectGrid(cfg, secIdx){
     card.className="project-card reveal"; card.dataset.idx=i; card.dataset.grid=cfg.dataKey;
     const tags=(p.tags||[]).map(t=>`<span>${t}</span>`).join("");
     let vis;
-    if(p.embedId) vis=`<div class="project-embed"><iframe src="${dp(p.embedId)}" allow="autoplay; encrypted-media" allowfullscreen></iframe></div>`;
+    if(p.embedId) vis=`<div class="project-embed"><iframe src="${dp(p.embedId)}" loading="lazy" title="${p.title}" allow="autoplay; encrypted-media" allowfullscreen></iframe></div>`;
     else{ const th=p.thumbnail?`<img src="${p.thumbnail}" alt="${p.title}" loading="lazy" />`:""; vis=`<div class="project-thumb">${th}</div>`; }
 
     card.innerHTML=`${editMode?cardControls(cfg.dataKey):""}${vis}<div class="project-body"><div class="project-meta"><span>${p.medium||""}</span><span>${p.year||""}</span></div><h3>${p.title}</h3><p class="card-desc">${p.description}</p><div class="project-tags">${tags}</div></div>`;
@@ -185,8 +183,6 @@ function buildSketchGrid(cfg, secIdx){
   const s=document.createElement("section");
   s.id=cfg.id; s.className="section"+(cfg.dark?" section-dark":"");
   let bg="";
-  if(cfg.dark&&cfg.bgImage) bg=`<div class="section-bg" aria-hidden="true"><img src="${cfg.bgImage}" alt="" /></div><div class="section-bg-overlay" aria-hidden="true"></div>`;
-
   s.innerHTML=`${bg}<div class="container">
     <div class="section-label reveal"><span class="section-number">${cfg.number||""}</span><h2>${cfg.title||""}</h2><p class="section-sub">${cfg.subtitle||""}</p></div>
     <div id="${cfg.id}Grid" class="sketch-grid" data-grid="${cfg.dataKey}" data-layout="${cfg.layout||'3col'}"></div>
@@ -530,9 +526,15 @@ function openLightbox(src,alt){if(editMode)return;const lb=document.getElementBy
 function closeLightbox(){const lb=document.getElementById("lightbox");lb.classList.remove("open");lb.setAttribute("aria-hidden","true");document.getElementById("lightboxImg").src="";}
 document.querySelector(".lightbox-close")?.addEventListener("click",closeLightbox);
 document.getElementById("lightbox")?.addEventListener("click",e=>{if(e.target===e.currentTarget)closeLightbox();});
-function observeReveals(){const o=new IntersectionObserver(en=>{en.forEach(e=>{if(e.isIntersecting){e.target.classList.add("visible");o.unobserve(e.target)}})},{threshold:0.12});document.querySelectorAll(".reveal:not(.visible)").forEach(el=>o.observe(el));}
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeLightbox();});
+function observeReveals(){const o=new IntersectionObserver(en=>{let n=0;en.forEach(e=>{if(e.isIntersecting){e.target.style.setProperty("--d",Math.min(n++,4)*80+"ms");e.target.classList.add("visible");o.unobserve(e.target)}})},{threshold:0.1});document.querySelectorAll(".reveal:not(.visible)").forEach(el=>o.observe(el));}
 function initHeader(){const h=document.getElementById("siteHeader");if(!h)return;const fn=()=>h.classList.toggle("scrolled",window.scrollY>40);window.addEventListener("scroll",fn,{passive:true});fn();}
 function initActiveNav(){const lnk=document.querySelectorAll(".site-nav a[href^='#']"),secs=[...lnk].map(a=>document.querySelector(a.getAttribute("href"))).filter(Boolean);function u(){let c="";secs.forEach(s=>{if(s.getBoundingClientRect().top<=160)c=s.id});lnk.forEach(a=>a.classList.toggle("active",a.getAttribute("href")==="#"+c))}window.addEventListener("scroll",u,{passive:true});u();}
+/* Lazy images above the target can still be loading while we scroll there, which shifts the page.
+   After the smooth scroll settles, nudge once more so the section lands right under the header. */
+function initAnchorScroll(){document.addEventListener("click",e=>{const a=e.target.closest("a[href^='#']");if(!a||a.getAttribute("href").length<2)return;const t=document.querySelector(a.getAttribute("href"));if(!t)return;e.preventDefault();history.replaceState(null,"",a.getAttribute("href"));
+  const go=b=>window.scrollTo({top:t.getBoundingClientRect().top+window.scrollY-60,behavior:b});go("smooth");
+  let n=0;const fix=()=>{if(Math.abs(t.getBoundingClientRect().top-60)>4&&n++<3)go("auto");};setTimeout(fix,900);setTimeout(fix,1600);});}
 function initMobileMenu(){const t=document.getElementById("menuToggle"),n=document.getElementById("siteNav");t.addEventListener("click",()=>n.classList.toggle("open"));n.querySelectorAll("a").forEach(a=>a.addEventListener("click",()=>n.classList.remove("open")));}
 
 /* ================================================================
@@ -541,5 +543,5 @@ function initMobileMenu(){const t=document.getElementById("menuToggle"),n=docume
 (async function boot(){
   C = await loadContent();
   reRenderSections();
-  initHeader(); initActiveNav(); initAdmin(); initMobileMenu();
+  initHeader(); initActiveNav(); initAdmin(); initMobileMenu(); initAnchorScroll();
 })();
