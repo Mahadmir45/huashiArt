@@ -114,7 +114,7 @@ function buildShowreel(cfg){
   const s=document.createElement("section"); s.id=cfg.id; s.className="section showreel-section"+(cfg.dark?" section-dark":"");
   s.innerHTML=`<div class="container showreel-container">
     <div class="section-label reveal"><span class="section-number">${cfg.number||""}</span><h2>${cfg.title||""}</h2><p class="section-sub">${cfg.subtitle||""}</p></div>
-    <div class="mac-window reveal reveal-media"><div class="mac-titlebar" aria-hidden="true"><span class="mac-dots"><i></i><i></i><i></i></span><span class="mac-title">showreel.mov</span></div><div class="showreel-frame"><iframe src="${dp(cfg.embedId)}" title="Hua Shi showreel" allow="autoplay; encrypted-media; fullscreen" allowfullscreen></iframe></div></div>
+    <div class="showreel-frame reveal"><iframe src="${dp(cfg.embedId)}" title="Hua Shi showreel" allow="autoplay; encrypted-media; fullscreen" allowfullscreen></iframe></div>
   </div>`;
   return s;
 }
@@ -530,7 +530,7 @@ function openLightbox(src,alt){if(editMode)return;const lb=document.getElementBy
 function closeLightbox(){const lb=document.getElementById("lightbox");lb.classList.remove("open");lb.setAttribute("aria-hidden","true");document.getElementById("lightboxImg").src="";}
 document.querySelector(".lightbox-close")?.addEventListener("click",closeLightbox);
 document.getElementById("lightbox")?.addEventListener("click",e=>{if(e.target===e.currentTarget)closeLightbox();});
-function observeReveals(){const els=[...document.querySelectorAll(".reveal:not(.visible)")];if(!("IntersectionObserver" in window)||matchMedia("(prefers-reduced-motion: reduce)").matches){els.forEach(el=>el.classList.add("visible"));return;}els.forEach(el=>{const sib=[...el.parentElement.children].filter(c=>c.classList.contains("reveal"));el.style.setProperty("--i",Math.min(sib.indexOf(el),5));});const o=new IntersectionObserver(en=>{en.forEach(e=>{if(e.isIntersecting){const t=e.target;t.classList.add("visible");o.unobserve(t);setTimeout(()=>{t.classList.add("settled");t.style.removeProperty("--i")},1500)}})},{threshold:0.12,rootMargin:"0px 0px -8% 0px"});els.forEach(el=>o.observe(el));}
+function observeReveals(){const o=new IntersectionObserver(en=>{en.forEach(e=>{if(e.isIntersecting){e.target.classList.add("visible");o.unobserve(e.target)}})},{threshold:0.12});document.querySelectorAll(".reveal:not(.visible)").forEach(el=>o.observe(el));}
 function initHeader(){const h=document.getElementById("siteHeader");if(!h)return;const fn=()=>h.classList.toggle("scrolled",window.scrollY>40);window.addEventListener("scroll",fn,{passive:true});fn();}
 function initActiveNav(){const lnk=document.querySelectorAll(".site-nav a[href^='#']"),secs=[...lnk].map(a=>document.querySelector(a.getAttribute("href"))).filter(Boolean);function u(){let c="";secs.forEach(s=>{if(s.getBoundingClientRect().top<=160)c=s.id});lnk.forEach(a=>a.classList.toggle("active",a.getAttribute("href")==="#"+c))}window.addEventListener("scroll",u,{passive:true});u();}
 function initMobileMenu(){const t=document.getElementById("menuToggle"),n=document.getElementById("siteNav");t.addEventListener("click",()=>n.classList.toggle("open"));n.querySelectorAll("a").forEach(a=>a.addEventListener("click",()=>n.classList.remove("open")));}
